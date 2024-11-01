@@ -1,6 +1,9 @@
 package riotapis
 
-import "fmt"
+import (
+	"github.com/adamGrgic/riotgosdk/internal/constants"
+	"github.com/adamGrgic/riotgosdk/internal/utils"
+)
 
 type Client struct {
 	APIKey string
@@ -10,6 +13,6 @@ func NewClient(apiKey string) *Client {
 	return &Client{APIKey: apiKey}
 }
 
-func Test() {
-	fmt.Println("\033[32mRiot API SDK Response Ok\033[0m")
+func TestFunction() string {
+	return utils.FmtTextColor(constants.ApiTestOk, constants.Green)
 }
