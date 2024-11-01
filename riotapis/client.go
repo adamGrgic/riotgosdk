@@ -11,5 +11,5 @@ func NewClient(apiKey string) *Client {
 }
 
 func Test() {
-	fmt.Println("Riot API SDK Test Ok")
+	fmt.Println("\033[32mRiot API SDK Response Ok\033[0m")
 }
