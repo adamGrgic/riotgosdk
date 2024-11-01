@@ -1,0 +1,71 @@
+package riotmodels
+
+type ParticipantDto struct {
+	AllInPings           int
+	AssistMePings        int
+	Assists              int
+	BaronKills           int
+	BountyLevel          int
+	ChampExperience      int
+	ChampLevel           int
+	ChampionId           int
+	ChampionName         string
+	CommandPings         int
+	ChampionTransform    int
+	ConsumablesPurchased int
+	// Challenges (add this in later)
+	DamageDealtToBuildings      int
+	DamageDealtToObjectives     int
+	DamageDealtToTurrets        int
+	DamageSelfMitigated         int
+	Deaths                      int
+	DetectorWardsPlaced         int
+	DoubleKills                 int
+	DragonKills                 int
+	EligibleForProgression      bool
+	EnemyMissingPings           int
+	EnemyVisionPings            int
+	FirstBloodAssist            bool
+	FirstBloodKill              bool
+	FirstTowerAssist            bool
+	FirstTowerKill              bool
+	GameEndedInEarlySurrender   bool
+	GameEndedInSurrender        bool
+	HoldPings                   int
+	GetBackPings                int
+	GoldEarned                  int
+	GoldSpent                   int
+	IndividualPosition          string
+	InhibitorKills              int
+	InhibitorTakedowns          int
+	InhibitorsLost              int
+	Item0                       int
+	Item1                       int
+	Item2                       int
+	Item3                       int
+	Item4                       int
+	Item5                       int
+	Item6                       int
+	ItemsPurchased              int
+	KillingSprees               int
+	Kills                       int
+	Lane                        string
+	LargestCriticalStrike       int
+	LargestKillingSpree         int
+	LargestMultikill            int
+	LongestTimeSpentLiving      int
+	MagicDamageDealt            int
+	MagicDamageDealtToChampions int
+	MagicDamageTaken            int
+	// todo: add generic
+	// Missions
+	NeutralMinionsKilled    int
+	NeedVisionPings         int
+	NexusKills              int
+	NexusTakedowns          int
+	NexusLost               int
+	ObjectivesStolen        int
+	ObjectivesStolenAssists int
+	OnMyWayPings            int
+	ParticipantId           int
+}
