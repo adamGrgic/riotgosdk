@@ -1,9 +1,9 @@
 package riotmodels
 
 type InfoTimeLineDto struct {
-	EndOfGameResult string
-	FrameInterval   int64
-	GameId          int64
-	Participants    []ParticipantTimeLineDto
-	Frames          []FramesTimeLineDto
+	EndOfGameResult string                   `json:"endOfGameResult"`
+	FrameInterval   int                      `json:"frameInterval"`
+	GameId          int                      `json:"gameId"`
+	Participants    []ParticipantTimeLineDto `json:"participants"`
+	Frames          []FramesTimeLineDto      `json:"frames"`
 }

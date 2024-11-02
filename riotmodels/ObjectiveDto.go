@@ -1,6 +1,6 @@
 package riotmodels
 
 type ObjectiveDto struct {
-	First bool
-	Kills int
+	First bool `json:"first"`
+	Kills int  `json:"kills"`
 }

@@ -1,6 +1,6 @@
 package riotmodels
 
 type ParticipantTimeLineDto struct {
-	ParticipantId int
-	Puuid         string
+	ParticipantId int    `json:"participantId"`
+	Puuid         string `json:"puuid"`
 }

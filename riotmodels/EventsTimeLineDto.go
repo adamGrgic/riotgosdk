@@ -1,7 +1,7 @@
 package riotmodels
 
 type EventsTimeLineDto struct {
-	Timestamp     int64
-	RealTimeStamp int64
-	Type          string
+	Timestamp     int    `json:"timeStamp"`
+	RealTimeStamp int    `json:"realTimeStamp"`
+	Type          string `json:"type"`
 }

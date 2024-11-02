@@ -1,8 +1,8 @@
 package riotmodels
 
 type TeamDto struct {
-	Bans       []BanDto
-	Objectives ObjectivesDto
-	TeamId     int
-	Win        bool
+	Bans       []BanDto      `json:"bans"`
+	Objectives ObjectivesDto `json:"objectives"`
+	TeamId     int           `json:"teamId"`
+	Win        bool          `json:"win"`
 }

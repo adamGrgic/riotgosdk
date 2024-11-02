@@ -1,8 +1,8 @@
 package riotmodels
 
 type MiniSeriesDto struct {
-	Losses   int
-	Progress string
-	Target   int
-	Wins     int
+	Losses   int    `json:"losses"`
+	Progress string `json:"progress"`
+	Target   int    `json:"target"`
+	Wins     int    `json:"wins"`
 }

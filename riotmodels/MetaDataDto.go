@@ -1,7 +1,7 @@
 package riotmodels
 
 type MetaDataDto struct {
-	DataVersion  string
-	MatchId      string
-	Participants []string
+	DataVersion  string   `json:"dataVersion"`
+	MatchId      string   `json:"matchId"`
+	Participants []string `json:"participants"`
 }

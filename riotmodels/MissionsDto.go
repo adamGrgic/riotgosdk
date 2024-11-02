@@ -1,16 +1,16 @@
 package riotmodels
 
 type MissionsDto struct {
-	PlayerScore0  int
-	PlayerScore1  int
-	PlayerScore2  int
-	PlayerScore3  int
-	PlayerScore4  int
-	PlayerScore5  int
-	PlayerScore6  int
-	PlayerScore7  int
-	PlayerScore8  int
-	PlayerScore9  int
-	PlayerScore10 int
-	PlayerScore11 int
+	PlayerScore0  int `json:"playerScore0"`
+	PlayerScore1  int `json:"playerScore1"`
+	PlayerScore2  int `json:"playerScore2"`
+	PlayerScore3  int `json:"playerScore3"`
+	PlayerScore4  int `json:"playerScore4"`
+	PlayerScore5  int `json:"playerScore5"`
+	PlayerScore6  int `json:"playerScore6"`
+	PlayerScore7  int `json:"playerScore7"`
+	PlayerScore8  int `json:"playerScore8"`
+	PlayerScore9  int `json:"playerScore9"`
+	PlayerScore10 int `json:"playerScore10"`
+	PlayerScore11 int `json:"playerScore11"`
 }

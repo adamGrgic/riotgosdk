@@ -1,6 +1,6 @@
 package riotmodels
 
 type MatchDto struct {
-	MetaDeta MetaDataDto
-	Info     InfoDto
+	MetaData MetaDataDto `json:"metaData"`
+	Info     InfoDto     `json:"info"`
 }

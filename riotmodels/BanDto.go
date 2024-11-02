@@ -1,6 +1,6 @@
 package riotmodels
 
 type BanDto struct {
-	ChampionId int
-	PickTurn   int
+	ChampionId int `json:"championId"`
+	PickTurn   int `json:"pickTurn"`
 }

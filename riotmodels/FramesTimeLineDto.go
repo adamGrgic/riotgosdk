@@ -1,7 +1,7 @@
 package riotmodels
 
 type FramesTimeLineDto struct {
-	Events            []EventsTimeLineDto
-	ParticipantFrames ParticipantFramesDto
-	Timestamp         int
+	Events            []EventsTimeLineDto  `json:"events"`
+	ParticipantFrames ParticipantFramesDto `json:"particpantFrames"`
+	Timestamp         int                  `json:"timestamp"`
 }

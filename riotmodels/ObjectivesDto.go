@@ -1,11 +1,11 @@
 package riotmodels
 
 type ObjectivesDto struct {
-	Baron      ObjectiveDto
-	Champion   ObjectiveDto
-	Dragon     ObjectiveDto
-	Horde      ObjectiveDto
-	Inhibitor  ObjectiveDto
-	RiftHerald ObjectiveDto
-	Tower      ObjectiveDto
+	Baron      ObjectiveDto `json:"baron"`
+	Champion   ObjectiveDto `json:"champion"`
+	Dragon     ObjectiveDto `json:"dragon"`
+	Horde      ObjectiveDto `json:"horde"`
+	Inhibitor  ObjectiveDto `json:"inhibitor"`
+	RiftHerald ObjectiveDto `json:"riftHerald"`
+	Tower      ObjectiveDto `json:"tower"`
 }

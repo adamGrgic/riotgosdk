@@ -1,71 +1,69 @@
 package riotmodels
 
 type ParticipantDto struct {
-	AllInPings           int
-	AssistMePings        int
-	Assists              int
-	BaronKills           int
-	BountyLevel          int
-	ChampExperience      int
-	ChampLevel           int
-	ChampionId           int
-	ChampionName         string
-	CommandPings         int
-	ChampionTransform    int
-	ConsumablesPurchased int
-	// Challenges (add this in later)
-	DamageDealtToBuildings      int
-	DamageDealtToObjectives     int
-	DamageDealtToTurrets        int
-	DamageSelfMitigated         int
-	Deaths                      int
-	DetectorWardsPlaced         int
-	DoubleKills                 int
-	DragonKills                 int
-	EligibleForProgression      bool
-	EnemyMissingPings           int
-	EnemyVisionPings            int
-	FirstBloodAssist            bool
-	FirstBloodKill              bool
-	FirstTowerAssist            bool
-	FirstTowerKill              bool
-	GameEndedInEarlySurrender   bool
-	GameEndedInSurrender        bool
-	HoldPings                   int
-	GetBackPings                int
-	GoldEarned                  int
-	GoldSpent                   int
-	IndividualPosition          string
-	InhibitorKills              int
-	InhibitorTakedowns          int
-	InhibitorsLost              int
-	Item0                       int
-	Item1                       int
-	Item2                       int
-	Item3                       int
-	Item4                       int
-	Item5                       int
-	Item6                       int
-	ItemsPurchased              int
-	KillingSprees               int
-	Kills                       int
-	Lane                        string
-	LargestCriticalStrike       int
-	LargestKillingSpree         int
-	LargestMultikill            int
-	LongestTimeSpentLiving      int
-	MagicDamageDealt            int
-	MagicDamageDealtToChampions int
-	MagicDamageTaken            int
-	// todo: add generic
-	// Missions
-	NeutralMinionsKilled    int
-	NeedVisionPings         int
-	NexusKills              int
-	NexusTakedowns          int
-	NexusLost               int
-	ObjectivesStolen        int
-	ObjectivesStolenAssists int
-	OnMyWayPings            int
-	ParticipantId           int
+	AllInPings                  int           `json:"allInPings"`
+	AssistMePings               int           `json:"assistMePings"`
+	Assists                     int           `json:"assists"`
+	BaronKills                  int           `json:"baronKills"`
+	BountyLevel                 int           `json:"bountyLevel"`
+	ChampExperience             int           `json:"champExperience"`
+	ChampLevel                  int           `json:"champLevel"`
+	ChampionId                  int           `json:"championId"`
+	ChampionName                string        `json:"championName"`
+	CommandPings                int           `json:"commandPings"`
+	ChampionTransform           int           `json:"championTransform"`
+	ConsumablesPurchased        int           `json:"consumablesPurchased"`
+	DamageDealtToBuildings      int           `json:"damageDealtToBuildings"`
+	DamageDealtToObjectives     int           `json:"damageDealtToObjectives"`
+	DamageDealtToTurrets        int           `json:"damageDealtToTurrets"`
+	DamageSelfMitigated         int           `json:"damageSelfMitigated"`
+	Deaths                      int           `json:"deaths"`
+	DetectorWardsPlaced         int           `json:"detectorWardsPlaced"`
+	DoubleKills                 int           `json:"doubleKills"`
+	DragonKills                 int           `json:"dragonKills"`
+	EligibleForProgression      bool          `json:"eligibleForProgression"`
+	EnemyMissingPings           int           `json:"enemyMissingPings"`
+	EnemyVisionPings            int           `json:"enemyVisionPings"`
+	FirstBloodAssist            bool          `json:"firstBloodAssist"`
+	FirstBloodKill              bool          `json:"firstBloodKill"`
+	FirstTowerAssist            bool          `json:"firstTowerAssist"`
+	FirstTowerKill              bool          `json:"firstTowerKill"`
+	GameEndedInEarlySurrender   bool          `json:"gameEndedInEarlySurrender"`
+	GameEndedInSurrender        bool          `json:"gameEndedInSurrender"`
+	HoldPings                   int           `json:"holdPings"`
+	GetBackPings                int           `json:"getBackPings"`
+	GoldEarned                  int           `json:"goldEarned"`
+	GoldSpent                   int           `json:"goldSpent"`
+	IndividualPosition          string        `json:"individualPosition"`
+	InhibitorKills              int           `json:"inhibitorKills"`
+	InhibitorTakedowns          int           `json:"inhibitorTakedowns"`
+	InhibitorsLost              int           `json:"inhibitorsLost"`
+	Item0                       int           `json:"item0"`
+	Item1                       int           `json:"item1"`
+	Item2                       int           `json:"item2"`
+	Item3                       int           `json:"item3"`
+	Item4                       int           `json:"item4"`
+	Item5                       int           `json:"item5"`
+	Item6                       int           `json:"item6"`
+	ItemsPurchased              int           `json:"itemsPurchased"`
+	KillingSprees               int           `json:"killingSprees"`
+	Kills                       int           `json:"kills"`
+	Lane                        string        `json:"lane"`
+	LargestCriticalStrike       int           `json:"largestCriticalStrike"`
+	LargestKillingSpree         int           `json:"largestKillingSpree"`
+	LargestMultikill            int           `json:"largestMultikill"`
+	LongestTimeSpentLiving      int           `json:"longestTimeSpentLiving"`
+	MagicDamageDealt            int           `json:"magicDamageDealt"`
+	MagicDamageDealtToChampions int           `json:"magicDamageDealtToChampions"`
+	MagicDamageTaken            int           `json:"magicDamageTaken"`
+	Missions                    []MissionsDto `json:"missions"`
+	NeutralMinionsKilled        int           `json:"neutralMinionsKilled"`
+	NeedVisionPings             int           `json:"needVisionPings"`
+	NexusKills                  int           `json:"nexusKills"`
+	NexusTakedowns              int           `json:"nexusTakedowns"`
+	NexusLost                   int           `json:"nexusLost"`
+	ObjectivesStolen            int           `json:"objectivesStolen"`
+	ObjectivesStolenAssists     int           `json:"objectivesStolenAssists"`
+	OnMyWayPings                int           `json:"onMyWayPings"`
+	ParticipantId               int           `json:"participantId"`
 }

@@ -1,14 +1,14 @@
 package riotmodels
 
 type LeagueItemDto struct {
-	FreshBlood   bool
-	Wins         int
-	MiniSeries   MiniSeriesDto
-	Inactive     bool
-	Veteran      bool
-	HotStreak    bool
-	Rank         string
-	LeaguePoints int
-	Losses       int
-	SummonerId   string
+	FreshBlood   bool          `json:"freshBlood"`
+	Wins         int           `json:"wins"`
+	MiniSeries   MiniSeriesDto `json:"miniSeries"`
+	Inactive     bool          `json:"inactive"`
+	Veteran      bool          `json:"veteran"`
+	HotStreak    bool          `json:"hotStreak"`
+	Rank         string        `json:"rank"`
+	LeaguePoints int           `json:"leaguePoints"`
+	Losses       int           `json:"losses"`
+	SummonerId   string        `json:"summonerId"`
 }
