@@ -26,14 +26,14 @@ func TestFunction() {
 	fmt.Println(testResponse)
 }
 
-func GetLeagueEntries(apiKey string) {
+func GetLeagueEntries(apiKey string) string {
 	url := protocol.HTTPS + regionalroutes.AMERICAS + client.GetLeagueEntriesRoute("RANKED_SOLO_5x5", "BRONZE", "III", 10)
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
-		return
+		return ""
 	}
 
 	req.Header.Set("X-Riot-Token", apiKey)
@@ -42,15 +42,15 @@ func GetLeagueEntries(apiKey string) {
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("Error making request:", err)
-		return
+		return ""
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading response:", err)
-		return
+		return ""
 	}
 
-	fmt.Println("Response:", string(body))
+	return string(body)
 }
