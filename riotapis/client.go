@@ -27,9 +27,17 @@ func TestFunction() {
 }
 
 func GetLeagueEntries(apiKey string) string {
-	url := protocol.HTTPS + regionalroutes.AMERICAS + client.GetLeagueEntriesRoute("RANKED_SOLO_5x5", "BRONZE", "III", 10)
-	client := &http.Client{}
+	url := protocol.HTTPS + regionalroutes.AMERICAS + client.GetLeagueEntriesEndpoint("RANKED_SOLO_5x5", "BRONZE", "III", 10)
+	return executeApiRequest(url, apiKey)
+}
 
+func GetLeagueManifest(leagueId string, apiKey string) string {
+	url := protocol.HTTPS + regionalroutes.AMERICAS + client.GetLeagueManifestEndpoint(leagueId)
+	return executeApiRequest(url, apiKey)
+}
+
+func executeApiRequest(url string, apiKey string) string {
+	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
