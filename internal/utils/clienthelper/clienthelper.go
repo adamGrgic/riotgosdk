@@ -1,8 +1,13 @@
 package client
 
-import "fmt"
+import (
+	"fmt"
 
-func GetLeagueEntriesEndpoint(queue string, tier string, division string, pageNumber int) string {
+	"github.com/adamGrgic/riotgosdk/publicconstants/gamemodes"
+	"github.com/adamGrgic/riotgosdk/publicconstants/leagues"
+)
+
+func GetLeagueEntriesEndpoint(queue gamemodes.GameMode, tier leagues.League, division string, pageNumber int) string {
 	endpoint := fmt.Sprintf("/lol/league/v4/entries/%s/%s/%s?page=%o", queue, tier, division, pageNumber)
 
 	return endpoint

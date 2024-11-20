@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/adamGrgic/riotgosdk/riotapis"
 	"github.com/joho/godotenv"
@@ -23,7 +22,7 @@ func main() {
 
 	fmt.Println("Testing API Connection...")
 
-	apiKey := os.Getenv("API_KEY")
-	riotapis.GetLeagueEntries(apiKey)
+	// apiKey := os.Getenv("API_KEY")
+	// riotapis.GetLeagueEntries(apiKey, gamemodes.RankedSolo5v5, leagues.Bronze, "III")
 
 }

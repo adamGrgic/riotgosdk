@@ -1,34 +1,50 @@
 package riotapis
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/adamGrgic/riotgosdk/internal/constants"
 	"github.com/adamGrgic/riotgosdk/internal/constants/protocol"
-	"github.com/adamGrgic/riotgosdk/internal/constants/regionalroutes"
 	client "github.com/adamGrgic/riotgosdk/internal/utils/clienthelper"
 	utils "github.com/adamGrgic/riotgosdk/internal/utils/textformatter"
+	"github.com/adamGrgic/riotgosdk/publicconstants/gamemodes"
+	"github.com/adamGrgic/riotgosdk/publicconstants/leagues"
+	"github.com/adamGrgic/riotgosdk/publicconstants/regionalroutes"
+	"github.com/adamGrgic/riotgosdk/riotmodels"
 )
-
-type Client struct {
-	APIKey  string
-	BaseUrl string
-}
-
-func NewClient(apiKey string) *Client {
-	return &Client{APIKey: apiKey}
-}
 
 func TestFunction() {
 	testResponse := utils.FmtTextColor(constants.ApiTestOk, constants.Green)
 	fmt.Println(testResponse)
 }
 
-func GetLeagueEntries(apiKey string) string {
-	url := protocol.HTTPS + regionalroutes.AMERICAS + client.GetLeagueEntriesEndpoint("RANKED_SOLO_5x5", "BRONZE", "III", 10)
+func GetLeagueEntriesResponse(apiKey string, gameMode gamemodes.GameMode, league leagues.League, division string) string {
+	url := protocol.HTTPS +
+		regionalroutes.AMERICAS +
+		client.GetLeagueEntriesEndpoint(gameMode, league, division, 10)
+
 	return executeApiRequest(url, apiKey)
+}
+
+func GetLeagueEntriesAsDTO(apiKey string, gameMode gamemodes.GameMode, league leagues.League, division string) []riotmodels.LeagueEntryDto {
+	url := protocol.HTTPS +
+		regionalroutes.AMERICAS +
+		client.GetLeagueEntriesEndpoint(gameMode, league, division, 10)
+
+	var leagueEntries []riotmodels.LeagueEntryDto
+
+	response := executeApiRequest(url, apiKey)
+
+	err := json.Unmarshal([]byte(response), &leagueEntries)
+	if err != nil {
+		log.Println("Error deserializing JSON:", err)
+	}
+
+	return leagueEntries
 }
 
 func GetLeagueManifest(leagueId string, apiKey string) string {
