@@ -1,10 +1,8 @@
 package riotapis
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 
 	"github.com/adamGrgic/riotgosdk/internal/constants"
@@ -15,6 +13,7 @@ import (
 	"github.com/adamGrgic/riotgosdk/publicconstants/leagues"
 	"github.com/adamGrgic/riotgosdk/publicconstants/regionalroutes"
 	"github.com/adamGrgic/riotgosdk/riotmodels"
+    "encoding/json"
 )
 
 func TestFunction() {
@@ -22,43 +21,77 @@ func TestFunction() {
 	fmt.Println(testResponse)
 }
 
-func GetLeagueEntriesResponse(apiKey string, gameMode gamemodes.GameMode, league leagues.League, division string) string {
+func GetLeague(apiKey string, leagueId string) (*riotmodels.LeagueListDto, error) {
 	url := protocol.HTTPS +
-		regionalroutes.AMERICAS +
-		client.GetLeagueEntriesEndpoint(gameMode, league, division, 10)
+        regionalroutes.AMERICAS +
+        client.GetLeagueManifestEndpoint(leagueId)
 
-	return executeApiRequest(url, apiKey)
-}
+    // fmt.Println("DEBUG RIOTGO URL: %s",url)
+    // fmt.Println(url)
+    resp, err:= executeApiRequest(url, apiKey)
+    if err != nil {
+        fmt.Println("Error creating request: ", err)
+        return nil,err
+    }
 
-func GetLeagueEntriesAsDTO(apiKey string, gameMode gamemodes.GameMode, league leagues.League, division string) []riotmodels.LeagueEntryDto {
-	url := protocol.HTTPS +
-		regionalroutes.AMERICAS +
-		client.GetLeagueEntriesEndpoint(gameMode, league, division, 10)
 
-	var leagueEntries []riotmodels.LeagueEntryDto
+    defer resp.Body.Close()
 
-	response := executeApiRequest(url, apiKey)
-
-	err := json.Unmarshal([]byte(response), &leagueEntries)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Println("Error deserializing JSON:", err)
+		fmt.Println("Error reading response:", err)
+		return nil, err
 	}
 
-	return leagueEntries
+    var leagueResponse riotmodels.LeagueListDto
+    if err := json.Unmarshal(body, &leagueResponse); err != nil {
+        return nil, err
+    }
+
+    return &leagueResponse, nil
+
+
 }
 
-func GetLeagueManifest(leagueId string, apiKey string) string {
-	url := protocol.HTTPS + regionalroutes.AMERICAS + client.GetLeagueManifestEndpoint(leagueId)
-	return executeApiRequest(url, apiKey)
+func GetLeagueEntries(apiKey string, gameMode gamemodes.GameMode, league leagues.League, division string) (*[]riotmodels.LeagueEntryDto, error) {
+	url := protocol.HTTPS +
+		regionalroutes.AMERICAS +
+		client.GetLeagueEntriesEndpoint(gameMode, league, division, 10)
+
+    resp, err:= executeApiRequest(url, apiKey)
+    if err != nil {
+        fmt.Println("Error creating request: ", err)
+        return nil,err
+    }
+
+
+    defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil,err
+	}
+
+    var leagueResponse []riotmodels.LeagueEntryDto
+    if err := json.Unmarshal(body, &leagueResponse); err != nil {
+        return nil,err
+    }
+
+    return &leagueResponse, nil
+
 }
 
-func executeApiRequest(url string, apiKey string) string {
+
+// todo: keep this in client.go and move the rest to another file (maybe)
+func executeApiRequest(url string, apiKey string, ) (*http.Response, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
-		return ""
+		return nil, err
 	}
+
 
 	req.Header.Set("X-Riot-Token", apiKey)
 	req.Header.Set("Content-Type", "application/json")
@@ -66,15 +99,9 @@ func executeApiRequest(url string, apiKey string) string {
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("Error making request:", err)
-		return ""
-	}
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Error reading response:", err)
-		return ""
+		return nil, err
 	}
 
-	return string(body)
+    return resp, nil
+
 }
