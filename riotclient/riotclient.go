@@ -75,10 +75,16 @@ func GetLeagueEntries(apiKey string, gameMode gamemodes.GameMode, league leagues
 	return &leagueResponse, nil
 }
 
-func GetRecentMatches(apiKey string, puuid string, start string, count string) (*[]string, error) {
+func GetLeagueEntriesByPuuid(apiKey string, puuid string) {
+
+}
+
+func GetRecentMatches(w http.ResponseWriter, apiKey string, puuid string, start string, count string) (*[]string, error) {
 	url := protocol.HTTPS +
 		miscrouting.Americas +
 		endpoint.GetRecentMatchesEndpoint(puuid, start, count)
+
+	// w.Write([]byte(url))
 
 	resp, err := executeApiRequest(url, apiKey)
 	if err != nil {
@@ -102,10 +108,41 @@ func GetRecentMatches(apiKey string, puuid string, start string, count string) (
 	return &matches, nil
 }
 
-func GetPuuid(apiKey string, gameName string, tagLine string) (*riotmodels.AccountDto, error) {
+func GetAccountFromGameName(w http.ResponseWriter, apiKey string, gameName string, tagLine string) (*riotmodels.AccountDto, error) {
 	url := protocol.HTTPS +
 		miscrouting.Americas +
-		endpoint.GetPuuidEndpoint(gameName, tagLine)
+		endpoint.GetAccountFromGameNameEndpoint(gameName, tagLine)
+
+	// w.Write([]byte(url))
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var account riotmodels.AccountDto
+	if err := json.Unmarshal(body, &account); err != nil {
+		return nil, err
+	}
+
+	return &account, nil
+}
+
+func GetAccountFromPuuid(w http.ResponseWriter, apiKey string, puuid string) (*riotmodels.AccountDto, error) {
+	url := protocol.HTTPS +
+		miscrouting.Americas +
+		endpoint.GetAccountFromPuuidEndpoint(puuid)
+
+	// w.Write([]byte(puuid))
 
 	resp, err := executeApiRequest(url, apiKey)
 	if err != nil {

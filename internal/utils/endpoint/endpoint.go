@@ -25,7 +25,13 @@ func GetRecentMatchesEndpoint(puuid string, start string, count string) string {
 	return endpoint
 }
 
-func GetPuuidEndpoint(gameName string, tagLine string) string {
+func GetAccountFromPuuidEndpoint(puuid string) string {
+	endpoint := fmt.Sprintf("/riot/account/v1/accounts/by-puuid/%s", puuid)
+
+	return endpoint
+}
+
+func GetAccountFromGameNameEndpoint(gameName string, tagLine string) string {
 	endpoint := fmt.Sprintf("/riot/account/v1/accounts/by-riot-id/%s/%s", gameName, tagLine)
 
 	return endpoint
