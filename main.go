@@ -52,6 +52,111 @@ func GetLeagueEntries(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
+func GetLeagueEntryFromPuuid(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	leagueId := query.Get("leagueId")
+
+	res, err := riotclient.GetLeagueEntryFromPuuid(apiKey, leagueId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetLeagueEntryFromSummonerId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	leagueId := query.Get("leagueId")
+
+	res, err := riotclient.GetLeagueEntryFromSummonerId(apiKey, leagueId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetChallengerLeagueEntriesFromQueueId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	queueId := query.Get("queueId")
+
+	res, err := riotclient.GetChallengerLeagueEntriesFromQueueId(apiKey, queueId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetGrandmasterLeagueEntriesFromQueueId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	queueId := query.Get("queueId")
+
+	res, err := riotclient.GetGrandmasterLeagueEntriesFromQueueId(apiKey, queueId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetMasterLeagueEntriesFromQueueId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	queueId := query.Get("queueId")
+
+	res, err := riotclient.GetMasterLeagueEntriesFromQueueId(apiKey, queueId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
 func GetRecentMatches(w http.ResponseWriter, r *http.Request) {
 	apiKey := os.Getenv("API_KEY")
 	w.Header().Set("Content-Type", "application/json")
@@ -62,6 +167,48 @@ func GetRecentMatches(w http.ResponseWriter, r *http.Request) {
 	count := query.Get("count")
 
 	res, err := riotclient.GetRecentMatches(w, apiKey, puuid, start, count)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetMatchData(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	matchId := query.Get("matchId")
+
+	res, err := riotclient.GetMatchData(w, apiKey, matchId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	// Set the Content-Type header and write the response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetMatchTimelineData(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	matchId := query.Get("matchId")
+
+	res, err := riotclient.GetMatchTimelineData(w, apiKey, matchId)
 	if err != nil {
 		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
 		w.Write([]byte(errMsg))
@@ -137,7 +284,14 @@ func main() {
 	http.HandleFunc("/", Ping)
 	http.HandleFunc("/league-entry", GetLeagueEntry)
 	http.HandleFunc("/league-entries", GetLeagueEntries)
+	http.HandleFunc("/league-entry-from-puuid", GetLeagueEntryFromPuuid)
+	http.HandleFunc("/league-entry-from-summoner-id", GetLeagueEntryFromSummonerId)
+	http.HandleFunc("/master-leagues-from-queue-id", GetMasterLeagueEntriesFromQueueId)
+	http.HandleFunc("/grandmaster-leagues-from-queue-id", GetGrandmasterLeagueEntriesFromQueueId)
+	http.HandleFunc("/challenger-leagues-from-queue-id", GetChallengerLeagueEntriesFromQueueId)
 	http.HandleFunc("/recent-matches", GetRecentMatches)
+	http.HandleFunc("/match-data", GetMatchData)
+	http.HandleFunc("/match-timeline", GetMatchTimelineData)
 	http.HandleFunc("/account-from-puuid", GetAccountFromPuuid)
 	http.HandleFunc("/account-from-game-name", GetAccountFromGameName)
 

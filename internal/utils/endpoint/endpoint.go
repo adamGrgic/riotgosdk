@@ -19,8 +19,50 @@ func GetLeagueEntryEndpoint(leagueId string) string {
 	return endpoint
 }
 
+func GetLeagueEntryFromPuuidEndpoint(puuid string) string {
+	endpoint := fmt.Sprintf("/lol/league/v4/entries/by-puuid/%s", puuid)
+
+	return endpoint
+}
+
+func GetLeagueEntryFromSummonerIdEndpoint(summonerId string) string {
+	endpoint := fmt.Sprintf("/lol/league/v4/entries/by-puuid/%s", summonerId)
+
+	return endpoint
+}
+
+func GetChallengerLeagueEntriesFromQueueIdEndpoint(queueId string) string {
+	endpoint := fmt.Sprintf("/lol/league/v4/challengerleagues/by-queue/%s", queueId)
+
+	return endpoint
+}
+
+func GetGrandmasterLeagueEntriesFromQueueIdEndpoint(queueId string) string {
+	endpoint := fmt.Sprintf("/lol/league/v4/grandmasterleagues/by-queue/%s", queueId)
+
+	return endpoint
+}
+
+func GetMasterLeagueEntriesFromQueueIdEndpoint(queueId string) string {
+	endpoint := fmt.Sprintf("/lol/league/v4/masterleagues/by-queue/%s", queueId)
+
+	return endpoint
+}
+
 func GetRecentMatchesEndpoint(puuid string, start string, count string) string {
 	endpoint := fmt.Sprintf("/lol/match/v5/matches/by-puuid/%s/ids?start=%s&count=%s", puuid, start, count)
+
+	return endpoint
+}
+
+func GetMatchDataEndpoint(matchId string) string {
+	endpoint := fmt.Sprintf("/lol/match/v5/matches/%s", matchId)
+
+	return endpoint
+}
+
+func GetMatchTimelineDataEndpoint(matchId string) string {
+	endpoint := fmt.Sprintf("/lol/match/v5/matches/%s/timeline", matchId)
 
 	return endpoint
 }
