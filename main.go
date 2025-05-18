@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/adamGrgic/riotgosdk/riotapis"
 	"github.com/joho/godotenv"
 )
 
@@ -18,7 +17,7 @@ func main() {
 	fmt.Println("Running test cycle for riot apis.")
 
 	fmt.Println("Testing function dependency...")
-	riotapis.TestFunction()
+	// riotclient.TestFunction()
 
 	fmt.Println("Testing API Connection...")
 

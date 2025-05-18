@@ -1,4 +1,4 @@
-package client
+package endpoint
 
 import (
 	"fmt"
@@ -13,8 +13,20 @@ func GetLeagueEntriesEndpoint(queue gamemodes.GameMode, tier leagues.League, div
 	return endpoint
 }
 
-func GetLeagueManifestEndpoint(leagueId string) string {
+func GetLeagueEntryEndpoint(leagueId string) string {
 	endpoint := fmt.Sprintf("/lol/league/v4/leagues/%s", leagueId)
+
+	return endpoint
+}
+
+func GetRecentMatchesEndpoint(puuid string, start string, count string) string {
+	endpoint := fmt.Sprintf("/lol/match/v5/matches/by-puuid/%s/ids?start=%s&count=%s", puuid, start, count)
+
+	return endpoint
+}
+
+func GetPuuidEndpoint(gameName string, tagLine string) string {
+	endpoint := fmt.Sprintf("/riot/account/v1/accounts/by-riot-id/%s/%s", gameName, tagLine)
 
 	return endpoint
 }
