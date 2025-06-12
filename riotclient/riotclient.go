@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"encoding/json"
 
@@ -11,7 +12,7 @@ import (
 	"github.com/adamGrgic/riotgosdk/internal/utils/endpoint"
 	"github.com/adamGrgic/riotgosdk/publicconstants/gamemodes"
 	"github.com/adamGrgic/riotgosdk/publicconstants/leagues"
-	miscrouting "github.com/adamGrgic/riotgosdk/publicconstants/misc"
+	"github.com/adamGrgic/riotgosdk/publicconstants/platformroutes"
 	"github.com/adamGrgic/riotgosdk/publicconstants/regionalroutes"
 	"github.com/adamGrgic/riotgosdk/riotmodels"
 )
@@ -212,7 +213,7 @@ func GetMasterLeagueEntriesFromQueueId(apiKey string, queueId string) (*[]riotmo
 
 func GetRecentMatches(w http.ResponseWriter, apiKey string, puuid string, start string, count string) (*[]string, error) {
 	url := protocol.HTTPS +
-		miscrouting.Americas +
+		platformroutes.AMERICAS +
 		endpoint.GetRecentMatchesEndpoint(puuid, start, count)
 
 	// w.Write([]byte(url))
@@ -241,7 +242,7 @@ func GetRecentMatches(w http.ResponseWriter, apiKey string, puuid string, start 
 
 func GetMatchData(w http.ResponseWriter, apiKey string, matchId string) (*riotmodels.MatchDto, error) {
 	url := protocol.HTTPS +
-		miscrouting.Americas +
+		platformroutes.AMERICAS +
 		endpoint.GetMatchDataEndpoint(matchId)
 
 	// w.Write([]byte(url))
@@ -270,7 +271,7 @@ func GetMatchData(w http.ResponseWriter, apiKey string, matchId string) (*riotmo
 
 func GetMatchTimelineData(w http.ResponseWriter, apiKey string, matchId string) (*riotmodels.TimelineDto, error) {
 	url := protocol.HTTPS +
-		miscrouting.Americas +
+		platformroutes.AMERICAS +
 		endpoint.GetMatchTimelineDataEndpoint(matchId)
 
 	// w.Write([]byte(url))
@@ -299,7 +300,7 @@ func GetMatchTimelineData(w http.ResponseWriter, apiKey string, matchId string) 
 
 func GetAccountFromGameName(w http.ResponseWriter, apiKey string, gameName string, tagLine string) (*riotmodels.AccountDto, error) {
 	url := protocol.HTTPS +
-		miscrouting.Americas +
+		platformroutes.AMERICAS +
 		endpoint.GetAccountFromGameNameEndpoint(gameName, tagLine)
 
 	// w.Write([]byte(url))
@@ -328,10 +329,8 @@ func GetAccountFromGameName(w http.ResponseWriter, apiKey string, gameName strin
 
 func GetAccountFromPuuid(w http.ResponseWriter, apiKey string, puuid string) (*riotmodels.AccountDto, error) {
 	url := protocol.HTTPS +
-		miscrouting.Americas +
+		platformroutes.AMERICAS +
 		endpoint.GetAccountFromPuuidEndpoint(puuid)
-
-	// w.Write([]byte(puuid))
 
 	resp, err := executeApiRequest(url, apiKey)
 	if err != nil {
@@ -371,6 +370,11 @@ func executeApiRequest(url string, apiKey string) (*http.Response, error) {
 	if err != nil {
 		fmt.Println("Error making request:", err)
 		return nil, err
+	}
+
+	if resp.StatusCode == http.StatusTooManyRequests {
+		time.Sleep(120 * time.Second)
+		return executeApiRequest(url, apiKey)
 	}
 
 	return resp, nil

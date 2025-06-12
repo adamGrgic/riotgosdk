@@ -38,7 +38,13 @@ func GetLeagueEntries(w http.ResponseWriter, r *http.Request) {
 	apiKey := os.Getenv("API_KEY")
 	w.Header().Set("Content-Type", "application/json")
 
-	res, err := riotclient.GetLeagueEntries(apiKey, gamemodes.RankedSolo5v5, leagues.Bronze, "III")
+	query := r.URL.Query()
+
+	gameMode := gamemodes.GameMode(query.Get("gameMode"))
+	league := leagues.League(query.Get("league"))
+	tier := query.Get("tier")
+
+	res, err := riotclient.GetLeagueEntries(apiKey, gameMode, league, tier)
 	if err != nil {
 		errMsg := fmt.Sprintf("Something went wrong getting league entries: %s", err)
 		w.Write([]byte(errMsg))

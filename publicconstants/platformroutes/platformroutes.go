@@ -17,4 +17,6 @@ const (
 	TH2  = "th2.api.riotgames.com"
 	TW2  = "tw2.api.riotgames.com"
 	VN2  = "vn2.api.riotgames.com"
+
+	AMERICAS string = "americas.api.riotgames.com"
 )
