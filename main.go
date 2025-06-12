@@ -280,7 +280,7 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fmt.Println("Starting up Riot API Service...")
+	log.Println("Starting up Riot API Service...")
 
 	err := godotenv.Load(".env")
 	if err != nil {
