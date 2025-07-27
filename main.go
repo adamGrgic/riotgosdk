@@ -274,6 +274,226 @@ func GetAccountFromPuuid(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
+// Summoner API handlers
+func GetSummonerByAccountId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	accountId := query.Get("accountId")
+
+	res, err := riotclient.GetSummonerByAccountId(apiKey, accountId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting summoner: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetSummonerByName(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	summonerName := query.Get("summonerName")
+
+	res, err := riotclient.GetSummonerByName(apiKey, summonerName)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting summoner: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetSummonerByPuuid(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	puuid := query.Get("puuid")
+
+	res, err := riotclient.GetSummonerByPuuid(apiKey, puuid)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting summoner: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetSummonerById(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	summonerId := query.Get("summonerId")
+
+	res, err := riotclient.GetSummonerById(apiKey, summonerId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting summoner: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+// Champion Mastery API handlers
+func GetChampionMasteryByPuuid(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	puuid := query.Get("puuid")
+
+	res, err := riotclient.GetChampionMasteryByPuuid(apiKey, puuid)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting champion mastery: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetChampionMasteryByPuuidAndChampionId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	puuid := query.Get("puuid")
+	championId := query.Get("championId")
+
+	res, err := riotclient.GetChampionMasteryByPuuidAndChampionId(apiKey, puuid, championId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting champion mastery: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetChampionMasteryBySummonerId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	summonerId := query.Get("summonerId")
+
+	res, err := riotclient.GetChampionMasteryBySummonerId(apiKey, summonerId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting champion mastery: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetChampionMasteryBySummonerIdAndChampionId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	summonerId := query.Get("summonerId")
+	championId := query.Get("championId")
+
+	res, err := riotclient.GetChampionMasteryBySummonerIdAndChampionId(apiKey, summonerId, championId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting champion mastery: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+func GetChampionMasteryScoreBySummonerId(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	query := r.URL.Query()
+	summonerId := query.Get("summonerId")
+
+	res, err := riotclient.GetChampionMasteryScoreBySummonerId(apiKey, summonerId)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting champion mastery score: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+// Status API handlers
+func GetStatus(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	res, err := riotclient.GetStatus(apiKey)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting status: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
+// Champion API handlers
+func GetChampionRotations(w http.ResponseWriter, r *http.Request) {
+	apiKey := os.Getenv("API_KEY")
+	w.Header().Set("Content-Type", "application/json")
+
+	res, err := riotclient.GetChampionRotations(apiKey)
+	if err != nil {
+		errMsg := fmt.Sprintf("Something went wrong getting champion rotations: %s", err)
+		w.Write([]byte(errMsg))
+		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(res)
+}
+
 func Ping(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, "Riot API Service Response OK")
@@ -300,6 +520,26 @@ func main() {
 	http.HandleFunc("/match-timeline", GetMatchTimelineData)
 	http.HandleFunc("/account-from-puuid", GetAccountFromPuuid)
 	http.HandleFunc("/account-from-game-name", GetAccountFromGameName)
+	http.HandleFunc("/summoner-by-account-id", GetSummonerByAccountId)
+	http.HandleFunc("/summoner-by-name", GetSummonerByName)
+	http.HandleFunc("/summoner-by-puuid", GetSummonerByPuuid)
+	http.HandleFunc("/summoner-by-id", GetSummonerById)
+	http.HandleFunc("/champion-mastery-by-puuid", GetChampionMasteryByPuuid)
+	http.HandleFunc("/champion-mastery-by-puuid-and-champion-id", GetChampionMasteryByPuuidAndChampionId)
+	http.HandleFunc("/champion-mastery-by-summoner-id", GetChampionMasteryBySummonerId)
+	http.HandleFunc("/champion-mastery-by-summoner-id-and-champion-id", GetChampionMasteryBySummonerIdAndChampionId)
+	http.HandleFunc("/champion-mastery-score-by-summoner-id", GetChampionMasteryScoreBySummonerId)
+	http.HandleFunc("/summoner-by-account-id", GetSummonerByAccountId)
+	http.HandleFunc("/summoner-by-name", GetSummonerByName)
+	http.HandleFunc("/summoner-by-puuid", GetSummonerByPuuid)
+	http.HandleFunc("/summoner-by-id", GetSummonerById)
+	http.HandleFunc("/champion-mastery-by-puuid", GetChampionMasteryByPuuid)
+	http.HandleFunc("/champion-mastery-by-puuid-and-champion-id", GetChampionMasteryByPuuidAndChampionId)
+	http.HandleFunc("/champion-mastery-by-summoner-id", GetChampionMasteryBySummonerId)
+	http.HandleFunc("/champion-mastery-by-summoner-id-and-champion-id", GetChampionMasteryBySummonerIdAndChampionId)
+	http.HandleFunc("/champion-mastery-score-by-summoner-id", GetChampionMasteryScoreBySummonerId)
+	http.HandleFunc("/status", GetStatus)
+	http.HandleFunc("/champion-rotations", GetChampionRotations)
 
 	port := ":8081"
 	fmt.Println("Riot API Service is running on port", port)

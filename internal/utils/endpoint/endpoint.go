@@ -78,3 +78,62 @@ func GetAccountFromGameNameEndpoint(gameName string, tagLine string) string {
 
 	return endpoint
 }
+
+// Summoner API endpoints
+func GetSummonerByAccountIdEndpoint(accountId string) string {
+	endpoint := fmt.Sprintf("/lol/summoner/v4/summoners/by-account/%s", accountId)
+	return endpoint
+}
+
+func GetSummonerByNameEndpoint(summonerName string) string {
+	endpoint := fmt.Sprintf("/lol/summoner/v4/summoners/by-name/%s", summonerName)
+	return endpoint
+}
+
+func GetSummonerByPuuidEndpoint(puuid string) string {
+	endpoint := fmt.Sprintf("/lol/summoner/v4/summoners/by-puuid/%s", puuid)
+	return endpoint
+}
+
+func GetSummonerByIdEndpoint(summonerId string) string {
+	endpoint := fmt.Sprintf("/lol/summoner/v4/summoners/%s", summonerId)
+	return endpoint
+}
+
+// Champion Mastery API endpoints
+func GetChampionMasteryByPuuidEndpoint(puuid string) string {
+	endpoint := fmt.Sprintf("/lol/champion-mastery/v4/champion-masteries/by-puuid/%s", puuid)
+	return endpoint
+}
+
+func GetChampionMasteryByPuuidAndChampionIdEndpoint(puuid string, championId string) string {
+	endpoint := fmt.Sprintf("/lol/champion-mastery/v4/champion-masteries/by-puuid/%s/by-champion/%s", puuid, championId)
+	return endpoint
+}
+
+func GetChampionMasteryBySummonerIdEndpoint(summonerId string) string {
+	endpoint := fmt.Sprintf("/lol/champion-mastery/v4/champion-masteries/by-summoner/%s", summonerId)
+	return endpoint
+}
+
+func GetChampionMasteryBySummonerIdAndChampionIdEndpoint(summonerId string, championId string) string {
+	endpoint := fmt.Sprintf("/lol/champion-mastery/v4/champion-masteries/by-summoner/%s/by-champion/%s", summonerId, championId)
+	return endpoint
+}
+
+func GetChampionMasteryScoreBySummonerIdEndpoint(summonerId string) string {
+	endpoint := fmt.Sprintf("/lol/champion-mastery/v4/scores/by-summoner/%s", summonerId)
+	return endpoint
+}
+
+// Status API endpoints
+func GetStatusEndpoint() string {
+	endpoint := "/lol/status/v4/platform-data"
+	return endpoint
+}
+
+// Champion API endpoints
+func GetChampionRotationsEndpoint() string {
+	endpoint := "/lol/platform/v3/champion-rotations"
+	return endpoint
+}

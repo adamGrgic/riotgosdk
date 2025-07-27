@@ -354,6 +354,307 @@ func GetAccountFromPuuid(w http.ResponseWriter, apiKey string, puuid string) (*r
 	return &account, nil
 }
 
+// Summoner API functions
+func GetSummonerByAccountId(apiKey string, accountId string) (*riotmodels.SummonerDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetSummonerByAccountIdEndpoint(accountId)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var summoner riotmodels.SummonerDto
+	if err := json.Unmarshal(body, &summoner); err != nil {
+		return nil, err
+	}
+
+	return &summoner, nil
+}
+
+func GetSummonerByName(apiKey string, summonerName string) (*riotmodels.SummonerDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetSummonerByNameEndpoint(summonerName)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var summoner riotmodels.SummonerDto
+	if err := json.Unmarshal(body, &summoner); err != nil {
+		return nil, err
+	}
+
+	return &summoner, nil
+}
+
+func GetSummonerByPuuid(apiKey string, puuid string) (*riotmodels.SummonerDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetSummonerByPuuidEndpoint(puuid)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var summoner riotmodels.SummonerDto
+	if err := json.Unmarshal(body, &summoner); err != nil {
+		return nil, err
+	}
+
+	return &summoner, nil
+}
+
+func GetSummonerById(apiKey string, summonerId string) (*riotmodels.SummonerDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetSummonerByIdEndpoint(summonerId)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var summoner riotmodels.SummonerDto
+	if err := json.Unmarshal(body, &summoner); err != nil {
+		return nil, err
+	}
+
+	return &summoner, nil
+}
+
+// Champion Mastery API functions
+func GetChampionMasteryByPuuid(apiKey string, puuid string) (*[]riotmodels.ChampionMasteryDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetChampionMasteryByPuuidEndpoint(puuid)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var championMasteries []riotmodels.ChampionMasteryDto
+	if err := json.Unmarshal(body, &championMasteries); err != nil {
+		return nil, err
+	}
+
+	return &championMasteries, nil
+}
+
+func GetChampionMasteryByPuuidAndChampionId(apiKey string, puuid string, championId string) (*riotmodels.ChampionMasteryDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetChampionMasteryByPuuidAndChampionIdEndpoint(puuid, championId)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var championMastery riotmodels.ChampionMasteryDto
+	if err := json.Unmarshal(body, &championMastery); err != nil {
+		return nil, err
+	}
+
+	return &championMastery, nil
+}
+
+func GetChampionMasteryBySummonerId(apiKey string, summonerId string) (*[]riotmodels.ChampionMasteryDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetChampionMasteryBySummonerIdEndpoint(summonerId)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var championMasteries []riotmodels.ChampionMasteryDto
+	if err := json.Unmarshal(body, &championMasteries); err != nil {
+		return nil, err
+	}
+
+	return &championMasteries, nil
+}
+
+func GetChampionMasteryBySummonerIdAndChampionId(apiKey string, summonerId string, championId string) (*riotmodels.ChampionMasteryDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetChampionMasteryBySummonerIdAndChampionIdEndpoint(summonerId, championId)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var championMastery riotmodels.ChampionMasteryDto
+	if err := json.Unmarshal(body, &championMastery); err != nil {
+		return nil, err
+	}
+
+	return &championMastery, nil
+}
+
+func GetChampionMasteryScoreBySummonerId(apiKey string, summonerId string) (*int, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetChampionMasteryScoreBySummonerIdEndpoint(summonerId)
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var score int
+	if err := json.Unmarshal(body, &score); err != nil {
+		return nil, err
+	}
+
+	return &score, nil
+}
+
+// Status API functions
+func GetStatus(apiKey string) (*riotmodels.StatusDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetStatusEndpoint()
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var status riotmodels.StatusDto
+	if err := json.Unmarshal(body, &status); err != nil {
+		return nil, err
+	}
+
+	return &status, nil
+}
+
+// Champion API functions
+func GetChampionRotations(apiKey string) (*riotmodels.ChampionRotationsDto, error) {
+	url := protocol.HTTPS +
+		platformroutes.NA1 +
+		endpoint.GetChampionRotationsEndpoint()
+
+	resp, err := executeApiRequest(url, apiKey)
+	if err != nil {
+		fmt.Println("Error creating request: ", err)
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return nil, err
+	}
+
+	var rotations riotmodels.ChampionRotationsDto
+	if err := json.Unmarshal(body, &rotations); err != nil {
+		return nil, err
+	}
+
+	return &rotations, nil
+}
+
 // todo: keep this in client.go and move the rest to another file (maybe)
 func executeApiRequest(url string, apiKey string) (*http.Response, error) {
 	client := &http.Client{}
